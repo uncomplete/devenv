@@ -12,7 +12,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Clang requirements
 RUN apt-get install -qqy --no-install-recommends \
         ca-certificates \ 
-        dpkg-dev file make patch \
+        dpkg-dev file make patch cmake \
         libc-dev libc++-dev libgcc-9-dev libstdc++-9-dev  \
         dirmngr gnupg wget curl lbzip2 xz-utils libtinfo5 zlib1g-dev && \
     ln -s /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2 /usr/lib/x86_64-linux-gnu/libtinfo.so
@@ -37,14 +37,6 @@ RUN bash install-vim.sh
 # Install Nodejs
 COPY scripts/install-nodejs.sh .
 RUN bash install-nodejs.sh
-
-# CCLS requirements
-RUN apt-get install -y \
-        cmake
-
-# Build/Install ccls
-COPY scripts/install-ccls.sh .
-RUN bash install-ccls.sh
 
 # Add python packages
 RUN apt-get install -y python3-pip && \
