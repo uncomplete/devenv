@@ -2,6 +2,7 @@
 set -eou pipefail
 
 vim_dir="${HOME}/.vim"
+
 echo "${vim_dir}"
 
 mkdir -p ${vim_dir}

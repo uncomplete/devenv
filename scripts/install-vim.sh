@@ -13,3 +13,4 @@ pushd vim
 make
 make install
 popd
+rm -rf vim

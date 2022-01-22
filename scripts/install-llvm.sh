@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 set -eou pipefail
 
+# Prior to running you need to set these env variables
+#   LLVM_RELEASE=12 LLVM_VERSION=12.0.0
+# and these apt-get packages:
+#        dirmngr gnupg lbzip2 xz-utils libtinfo5 zlib1g-dev \
+#        libc-dev libc++-dev libgcc-9-dev libstdc++-9-dev  \
+# After running you should
+#    ln /usr/local/bin/clang /usr/local/bin/cc && \
+
 # Determine architecture
 ARCH=$(dpkg --print-architecture)
 

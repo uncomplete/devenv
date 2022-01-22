@@ -31,3 +31,8 @@ The full LLVM-project release is included in the development image. This include
 ## Python
 
 For Python we use Ubuntu 20.04's default python3 apt-get packages (Python 3.8.10). We use Jedi as a language-server for Python.
+
+## To-Do
+
+* Make a lightweight version for use as a default vim editor
+* Use alias 
