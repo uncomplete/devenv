@@ -1,0 +1,6 @@
+# set prompt
+if [ -f ~/.ezshrc ] ; then
+  source ~/.ezshrc
+fi
+
+alias ls='ls -lah'

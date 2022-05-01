@@ -18,6 +18,7 @@ RUN apt-get install -qqy --no-install-recommends \
         wget curl \
         git \
         python3-dev python3-pip \
+        libssl-dev libevent-dev liblz4-dev libsnappy-dev \
         && \
     ln -s /usr/lib/aarch64-linux-gnu/libtinfo.so.6.2 /usr/lib/aarch64-linux-gnu/libtinfo.so && \
     ln -s /usr/bin/clang-12 /usr/bin/clang && \

@@ -1,0 +1,44 @@
+set encoding=utf-8
+
+if has("autocmd")
+  augroup templates
+    autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh
+    autocmd BufNewFile CMakeLists.txt 0r ~/.vim/templates/CMakeLists.txt
+    autocmd BufNewFile Makefile 0r ~/.vim/templates/Makefile
+  augroup END
+endif
+
+" Save place in files
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
+colorscheme default
+syntax on
+
+" Start NERDTree. If a file is specified, move the cursor to its window.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+
+set nocompatible
+set backspace=indent,eol,start "backspace over everything in insert mode
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+set colorcolumn=80
+set hlsearch
+set ruler
+set nocp
+set tw=80
+set number
+"set foldmethod=indent
+"set foldlevel=1
+"set foldclose=all
+"let g:plug_timeout=90000
+set foldmethod=syntax
+set nofoldenable
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""             For vim-templates
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:tmpl_author_email = 'uncomplete3@gmail.com'
+let g:tmpl_author_name = 'Eric Eastman'

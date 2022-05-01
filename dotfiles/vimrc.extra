@@ -4,6 +4,7 @@ if has("autocmd")
   augroup templates
     autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh
     autocmd BufNewFile CMakeLists.txt 0r ~/.vim/templates/CMakeLists.txt
+    autocmd BufNewFile Makefile 0r ~/.vim/templates/Makefile
   augroup END
 endif
 
