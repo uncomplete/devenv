@@ -5,7 +5,7 @@ complicated prompt and oh-my-zsh related things.
 
 Either use the dotfiles/setup.sh script or sym-link them yourself using:  
 ```
-ln -s dotfiles/zshrc ~/.zshrc
+devenv $> ln -s ${PWD}/dotfiles/zshrc ${HOME}/.zshrc
 ```
 
 # Development Docker Containers
