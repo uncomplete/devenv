@@ -27,7 +27,7 @@ Build the development container with:
 
 Use the container by running it with your source code mounted as a volume:
 
-```src$> docker run -it -v ${PWD}:/src devenv:latest```
+```src$> docker run --rm -it -v ${PWD}:/src devenv:latest```
 
 ## Vim
 
