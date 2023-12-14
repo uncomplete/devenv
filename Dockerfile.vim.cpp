@@ -25,7 +25,7 @@ RUN apt-get install -qqy --no-install-recommends \
     ln -s /usr/bin/clang++-12 /usr/bin/clang++ && \
     ln -s /usr/bin/clangd-12 /usr/bin/clangd
 
-COPY scripts/* /installscripts/
+COPY scripts/\* /installscripts/
 
 ENV CC=clang CXX=clang++
 RUN bash /installscripts/install-vim.sh && \
@@ -43,18 +43,30 @@ COPY dotfiles/coc-settings.json /root/.vim/
 COPY templates/ /root/.vim/templates/
 
 ### C++ packages
-RUN bash /installscripts/install-git-repo-w-cmake.sh -u https://github.com/google/double-conversion.git
-RUN bash /installscripts/install-git-repo-w-cmake.sh -u https://github.com/gflags/gflags.git
-RUN bash /installscripts/install-git-repo-w-cmake.sh -u https://github.com/google/glog.git
-RUN bash /installscripts/install-git-repo-w-cmake.sh -b release-1.11.0 -u https://github.com/google/googletest.git
-RUN bash /installscripts/install-git-repo-w-cmake.sh -u https://github.com/fmtlib/fmt.git
-RUN bash /installscripts/install-git-repo-w-cmake.sh -u https://github.com/google/flatbuffers.git
-RUN bash /installscripts/install-git-repo-w-cmake.sh -b v2.13.8 -u https://github.com/catchorg/Catch2.git
+#RUN bash /installscripts/install-git-repo-w-cmake.sh -u https://github.com/google/double-conversion.git
+#RUN bash /installscripts/install-git-repo-w-cmake.sh -u https://github.com/gflags/gflags.git
+#RUN bash /installscripts/install-git-repo-w-cmake.sh -u https://github.com/google/glog.git
+#RUN bash /installscripts/install-git-repo-w-cmake.sh -b release-1.11.0 -u https://github.com/google/googletest.git
+#RUN bash /installscripts/install-git-repo-w-cmake.sh -u https://github.com/fmtlib/fmt.git
+#RUN bash /installscripts/install-git-repo-w-cmake.sh -u https://github.com/google/flatbuffers.git
+#RUN bash /installscripts/install-git-repo-w-cmake.sh -b v2.13.8 -u https://github.com/catchorg/Catch2.git
 
-RUN bash /installscripts/install-boost.sh
-RUN bash /installscripts/install-git-repo-w-cmake.sh -b main -u https://github.com/facebook/folly.git
+#COPY scripts/install-boost.sh /installscripts/install-boost.sh
+#RUN bash /installscripts/install-boost.sh
+#RUN bash /installscripts/install-git-repo-w-cmake.sh -b main -u https://github.com/facebook/folly.git
 
-##
+#COPY scripts/install-sodium.sh /installscripts/install-sodium.sh
+#RUN bash /installscripts/install-sodium.sh
+#COPY scripts/install-zstd.sh /installscripts/install-zstd.sh
+#RUN bash /installscripts/install-zstd.sh
+#RUN bash /installscripts/install-git-repo-w-cmake.sh -b main -s fizz -u https://github.com/facebookincubator/fizz.git
+#RUN bash /installscripts/install-git-repo-w-cmake.sh -b main -s wangle -u https://github.com/facebook/wangle.git
+
+COPY scripts/install-wangle.sh /installscripts/install-wangle.sh
+RUN bash /installscripts/install-wangle.sh
+
+
+RUN rm -rf /installscripts
 
 RUN mkdir -p /root/.config/coc && \
     rm -rf /installscripts

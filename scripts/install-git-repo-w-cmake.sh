@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 set -eou pipefail
 
-USAGE_STRING="Usage: $(basename $0) [-h] [-b branch] [-u url]"
+USAGE_STRING="Usage: $(basename $0) [-h] [-b branch] [-u url] [-s subdir]"
 
+SUBDIR=
 BRANCH=master
 
-while getopts 'b:u:h' opt; do
+while getopts 'b:u:s:h' opt; do
   case "$opt" in
     b)
       BRANCH="$OPTARG"
@@ -14,7 +15,11 @@ while getopts 'b:u:h' opt; do
     u)
       URL="$OPTARG"
       ;;
-
+ 
+    s)
+      SUBDIR="$OPTARG"
+      ;;
+ 
     h)
       echo "${USAGE_STRING}"
       exit 0
@@ -38,9 +43,9 @@ REPO=$(basename $URL .git)
 mkdir /tmp/${REPO}-install
 cd /tmp/${REPO}-install
 git clone --depth 1 --branch ${BRANCH} ${URL}
-cd ${REPO}
-cmake -S . -B _bb
-cmake -DCMAKE_POSITION_INDEPENDENT_CODE=TRUE --build _bb
+cd ${REPO}/${SUBDIR}
+cmake -S . -B _bb -DCMAKE_POSITION_INDEPENDENT_CODE=TRUE
+cmake --build _bb
 cmake --build _bb --target install
 cd /
 rm -rf /tmp/${REPO}-install

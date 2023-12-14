@@ -1,4 +1,5 @@
-FROM ubuntu:20.04 as base
+# syntax=docker/dockerfile:1
+FROM ubuntu:latest as base
 
 RUN apt-get update --fix-missing && \
     apt-get -y upgrade && \
@@ -12,29 +13,33 @@ ENV LANG=en_US.UTF-8 \
 RUN apt-get install -qqy --no-install-recommends \
         ca-certificates \
         dpkg-dev \
-        libtinfo5 \
+        libncurses-dev \
         clang-12 clangd-12 \
         make cmake \
         wget curl \
         git \
         python3-dev python3-pip \
+        libevent-dev libssl-dev \
         && \
-    ln -s /usr/lib/aarch64-linux-gnu/libtinfo.so.6.2 /usr/lib/aarch64-linux-gnu/libtinfo.so && \
     ln -s /usr/bin/clang-12 /usr/bin/clang && \
     ln -s /usr/bin/clang++-12 /usr/bin/clang++ && \
     ln -s /usr/bin/clangd-12 /usr/bin/clangd
-
-COPY scripts/* /installscripts/
+        #libtinfo5 \
+    #ln -s /usr/lib/aarch64-linux-gnu/libtinfo.so.6.2 /usr/lib/aarch64-linux-gnu/libtinfo.so && \
 
 ENV CC=clang CXX=clang++
-RUN bash /installscripts/install-vim.sh && \
-    bash /installscripts/install-nodejs.sh && \
-    bash /installscripts/setup-vim.sh
 
 # Add python packages
 RUN python3 -m pip install -U pip && \
     python3 -m pip install -U wheel setuptools && \
     python3 -m pip install -U numpy matplotlib pylint notebook
+
+COPY scripts/install-vim.sh /installscripts/install-vim.sh
+RUN  bash /installscripts/install-vim.sh
+COPY scripts/install-nodejs.sh /installscripts/install-nodejs.sh
+RUN  bash /installscripts/install-nodejs.sh
+COPY scripts/setup-vim.sh /installscripts/setup-vim.sh
+RUN  bash /installscripts/setup-vim.sh
 
 # add a vimrc file
 COPY dotfiles/vimrc.extra /root/.vimrc
@@ -42,6 +47,7 @@ COPY dotfiles/coc-settings.json /root/.vim/
 COPY templates/ /root/.vim/templates/
 
 ### C++ packages
+COPY scripts/install-git-repo-w-cmake.sh /installscripts/install-git-repo-w-cmake.sh
 RUN bash /installscripts/install-git-repo-w-cmake.sh -u https://github.com/google/double-conversion.git
 RUN bash /installscripts/install-git-repo-w-cmake.sh -u https://github.com/gflags/gflags.git
 RUN bash /installscripts/install-git-repo-w-cmake.sh -u https://github.com/google/glog.git
@@ -50,6 +56,7 @@ RUN bash /installscripts/install-git-repo-w-cmake.sh -u https://github.com/fmtli
 RUN bash /installscripts/install-git-repo-w-cmake.sh -u https://github.com/google/flatbuffers.git
 RUN bash /installscripts/install-git-repo-w-cmake.sh -b v2.13.8 -u https://github.com/catchorg/Catch2.git
 
+COPY scripts/install-boost.sh /installscripts/install-boost.sh
 RUN bash /installscripts/install-boost.sh
 RUN bash /installscripts/install-git-repo-w-cmake.sh -b main -u https://github.com/facebook/folly.git
 
