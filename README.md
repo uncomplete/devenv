@@ -71,12 +71,13 @@ $> docker build --rm --tag jupyter:latest .
 docker run -it --rm \
     -p 8888:8888 \
     --user root \
-    -e NB_USER=eric \
+    -e NB_USER=$(whoami) \
     -e NB_UID=$(id -u) \
     -e NB_GID=$(id -g) \
     -e CHOWN_HOME=yes \
     -e CHOWN_HOME_OPTS="-R" \
-    -w "/home/eric" \
-    -v "${PWD}":/home/eric \
+    -e POLYGON_API_KEY="" \
+    -w "/home/$(whoami)" \
+    -v "${PWD}":/home/$(whoami) \
     jupyter:latest
 ```

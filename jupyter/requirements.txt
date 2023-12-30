@@ -1,5 +1,5 @@
 ffn
-finnhub-python
 bt
 tensorflow
 tf-quant-finance
+polygon-api-client
