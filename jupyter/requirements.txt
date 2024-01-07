@@ -3,3 +3,6 @@ bt
 tensorflow
 tf-quant-finance
 polygon-api-client
+finnhub-python
+python-bea
+fredapi

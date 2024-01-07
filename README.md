@@ -60,12 +60,13 @@ For Python we use Ubuntu 20.04's default python3 apt-get packages
 
 ## Python
 
-Use these notebooks for quick python work: https://github.com/jupyter/docker-stacks/blob/main/images/docker-stacks-foundation/Dockerfile
-
+Use these notebooks for quick python work: `https://github.com/jupyter/docker-stacks/blob/main/images/docker-stacks-foundation/Dockerfile`  
 
 ```
 $> docker build --rm --tag jupyter:latest .
 ```
+
+Store your API keys as env variables.  
 
 ```
 docker run -it --rm \
@@ -76,7 +77,11 @@ docker run -it --rm \
     -e NB_GID=$(id -g) \
     -e CHOWN_HOME=yes \
     -e CHOWN_HOME_OPTS="-R" \
-    -e POLYGON_API_KEY="" \
+    -e BLS_API_KEY="${BLS_API_KEY}" \
+    -e FRED_API_KEY="${FRED_API_KEY}" \
+    -e PG_API_KEY="${PG_API_KEY}" \
+    -e BEA_API_KEY="${BEA_API_KEY}" \
+    -e FH_API_KEY="${FH_API_KEY}" \
     -w "/home/$(whoami)" \
     -v "${PWD}":/home/$(whoami) \
     jupyter:latest
