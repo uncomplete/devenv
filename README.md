@@ -82,6 +82,8 @@ docker run -it --rm \
     -e PG_API_KEY="${PG_API_KEY}" \
     -e BEA_API_KEY="${BEA_API_KEY}" \
     -e FH_API_KEY="${FH_API_KEY}" \
+    -e E_API_KEY="${E_API_KEY}" \
+    -e E_API_SECRET="${E_API_SECRET}" \
     -w "/home/$(whoami)" \
     -v "${PWD}":/home/$(whoami) \
     jupyter:latest

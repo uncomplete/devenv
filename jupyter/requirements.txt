@@ -6,3 +6,7 @@ polygon-api-client
 finnhub-python
 python-bea
 fredapi
+squarify
+opstrat
+pyetrade
+QuantLib
