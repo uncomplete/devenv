@@ -1,12 +1,12 @@
+rauth
 ffn
 bt
 tensorflow
 tf-quant-finance
-polygon-api-client
-finnhub-python
 python-bea
-fredapi
+pyetrade
 squarify
 opstrat
-pyetrade
 QuantLib
+openpyxl
+openbb

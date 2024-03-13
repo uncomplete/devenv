@@ -84,6 +84,10 @@ docker run -it --rm \
     -e FH_API_KEY="${FH_API_KEY}" \
     -e E_API_KEY="${E_API_KEY}" \
     -e E_API_SECRET="${E_API_SECRET}" \
+    -e E_API_KEY_SB="${E_API_KEY_SB}" \
+    -e E_API_SECRET_SB="${E_API_SECRET_SB}" \
+    -e OBB_API_KEY="${OBB_API_KEY}" \
+    -e FMP_API_KEY="${FMP_API_KEY}" \
     -w "/home/$(whoami)" \
     -v "${PWD}":/home/$(whoami) \
     jupyter:latest
