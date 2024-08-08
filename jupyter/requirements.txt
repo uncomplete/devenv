@@ -1,12 +1,12 @@
-rauth
+rauth==0.7.3
 ffn
 bt
 tensorflow
 tf-quant-finance
 python-bea
-pyetrade
 squarify
 opstrat
 QuantLib
 openpyxl
 openbb
+ib_async
